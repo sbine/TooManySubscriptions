@@ -1,0 +1,61 @@
+body {
+	min-width: 700px;
+	min-height:500px;
+	background-color: #FAFAFA;
+}
+
+a {
+	text-decoration: none;
+}
+
+.mdl-selectfield--floating-label.is-dirty .mdl-selectfield__label, .mdl-selectfield--floating-label.is-focused .mdl-selectfield__label {
+	color: rgb(244,67,54);
+}
+
+.card-wide.mdl-card {
+  width: 100%;
+  min-height: 150px;
+  padding: 10px;
+  margin-bottom: 20px;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+}
+
+.card-wide .mdl-card__title {
+  padding: 7px 16px 0 !important;
+}
+
+.card-wide .card-primary {
+	width: 100%;
+}
+
+.card-thumbnail img {
+	max-width: 150px;
+}
+
+.media-date {
+	display: block;
+}
+
+.media-video-title {
+	font-size: 110%;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.media-channel-title {
+	display: block;
+	font-size: 90%;
+	margin: 5px 0;
+}
+
+.media-description {
+	color: black;
+}
+
+@media screen and (max-width: 1024px) {
+	.mdl-layout__header-row {
+		padding: 0 16px 0 16px;
+	}
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Too Many Subscriptions</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="vendor/js/localforage.min.js"></script>
+	<script src="vendor/js/underscore-min.js"></script>
+	<script src="vendor/js/moment.min.js"></script>
+	<script src="vendor/js/material.min.js"></script>
+	<script src="vendor/js/mdl-selectfield.min.js"></script>
+	<script src="js/http.js"></script>
+	<script src="js/video.js"></script>
+	<script src="js/channel.js"></script>
+	<script src="js/collection.js"></script>
+	<script src="js/app.js"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="vendor/css/material.min.css" rel="stylesheet" media="screen">
+	<link href="vendor/css/mdl-selectfield.min.css" rel="stylesheet" media="screen">
+	<link href="css/style.css" rel="stylesheet" media="screen">
+</head>
+<body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<header class="mdl-layout__header">
+			<div class="mdl-layout__header-row">
+				<h1 class="mdl-layout-title">Too Many Subscriptions</h1>
+			</div>
+		</header>
+		<div class="mdl-layout__content">
+			<div class="mdl-grid">
+				<div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset-desktop">
+					<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+						<select class="mdl-selectfield__select" id="collection-select">
+						</select>
+						<label class="mdl-selectfield__label" for="collection-select">Collection</label>
+					</div>
+				</div>
+			</div>
+			<div class="mdl-grid">
+				<div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset-desktop">
+					<div id="collection-list" style="min-width: 500px;"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/template" id="collection-item-template">
+		<div class="mdl-card card-wide mdl-shadow--2dp">
+			<div class="card-secondary">
+				<div class="card-thumbnail-title">
+					<a href="<%= video.channel.url %>"><span class="media-channel-title"><%= video.channel.name %></span></a>
+				</div>
+				<div class="card-thumbnail">
+					<a href="<%= video.url %>">
+						<img src="<%= video.thumbnail %>"/>
+					</a>
+				</div>
+			</div>
+			<div class="card-primary">
+				<div class="mdl-card__title">
+					<a href="<%= video.url %>" class="media-video-title"><%= video.title %></a>
+				</div>
+				<div class="mdl-card__supporting-text">
+					<span class="media-description">
+						<% if (video.description.length > 0) { %>
+							<%= video.description.substring(0, 120) %>...
+						<% } %>
+					</span>
+					<span class="media-date" title="<%= video.date.format('YYYY-MM-DD h:mm:ssa') %>">
+						<%= video.date.fromNow() %>
+					</span>
+					<span class="media-views">
+						<% if (video.views > 0) { %>
+							<%= video.views.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> views
+						<% } %>
+					</span>
+				</div>
+			</div>
+		</div>
+	</script>
+
+
+</body>
+</html>
