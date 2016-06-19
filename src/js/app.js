@@ -33,6 +33,7 @@ function main() {
 			renderTemplate(document.getElementById('collection-item-template'), document.getElementById('collection-list'), { video: video }, true);
 		});
 	});
+	document.getElementById('collection-loading').style.display = 'none';
 }
 
 function getCollectionsFromStorage() {

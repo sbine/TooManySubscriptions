@@ -12,6 +12,10 @@ a {
 	color: rgb(244,67,54);
 }
 
+.mdl-progress {
+	width: 100%;
+}
+
 .card-wide.mdl-card {
   width: 100%;
   min-height: 150px;
