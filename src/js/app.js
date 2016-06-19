@@ -6,10 +6,10 @@ var fakeCollection = new Collection(
 	'Favorites',
 	[
 		new Channel('UCD4INvKvy83OXwAkRjaQKtw'), // Sips
-		new Channel('UCesAHOvWea6SmLWWvwz_LHg'), // Anklespankin
 		new Channel('UC9-y-6csu5WGm29I7JiwpnA'), // Computerphile
+		new Channel('UC6nSFpj9HTCZ5t-N3Rm3-HA'), // Vsauce
+		new Channel('UCMtFAi84ehTSYSE9XoHefig'), // The Late Show
 		new Channel('UCRVruzlQF5cqpw9jQgIgNdw'), // mugumogu
-		new Channel('UCK3eoeo-HGHH11Pevo1MzfQ') // Blitzkriegsler
 	]
 );
 
@@ -26,6 +26,7 @@ function main() {
 
 	getCollectionsFromStorage();
 
+	// Render video list when collections have loaded
 	document.addEventListener('toomanysubscriptions.CollectionLoaded', function(e) {
 		var videos = e.collection.recentVideos();
 		_.each(videos, function(video, index) {
@@ -34,11 +35,10 @@ function main() {
 	});
 }
 
-function getCollectionsFromStorage()
-{
+function getCollectionsFromStorage() {
 	localforage.getItem('collections').then(function(collections) {
 		if (collections != null) {
-			console.log('Found cached collections:');
+			console.log('Retrieved saved collections:');
 			console.log(collections);
 
 			populateCollectionDropdown(collections);
@@ -49,8 +49,7 @@ function getCollectionsFromStorage()
 	});
 }
 
-function saveCollectionsToStorage(collections)
-{
+function saveCollectionsToStorage(collections) {
 	localforage.setItem('collections', collections).then(function(value) {
 	}).catch(function(err) {
 		console.log('Error saving collection to localforage:');

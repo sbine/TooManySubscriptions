@@ -19,6 +19,7 @@ Collection.prototype.fetchChannels = function() {
 		.then(function(data) {
 			channelsFinished++;
 
+			// When all channels are done updating, dispatch collection loaded event
 			if (channelsFinished === collection.channels.length) {
 				collection.dispatchLoadedEvent(collection);
 			}
