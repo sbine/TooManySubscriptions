@@ -1,6 +1,6 @@
 body {
 	min-width: 700px;
-	min-height:500px;
+	min-height: 600px;
 	background-color: #FAFAFA;
 }
 
@@ -10,6 +10,10 @@ a {
 
 .mdl-selectfield--floating-label.is-dirty .mdl-selectfield__label, .mdl-selectfield--floating-label.is-focused .mdl-selectfield__label {
 	color: rgb(244,67,54);
+}
+
+.mdl-layout__header-row a {
+	color: white;
 }
 
 .mdl-progress {

@@ -17,8 +17,8 @@
 				</a>
 				<div class="mdl-layout-spacer"></div>
 				<nav class="mdl-navigation">
-					<a class="mdl-navigation__link is-active" href="popup.html">Feed</a>
-					<a class="mdl-navigation__link" href="collections.html">Collections</a>
+					<a class="mdl-navigation__link" href="popup.html">Feed</a>
+					<a class="mdl-navigation__link is-active" href="collections.html">Collections</a>
 					<a class="mdl-navigation__link collection-dedicated-tab" href="#">Open In Tab</a>
 				</nav>
 			</div>
@@ -31,50 +31,36 @@
 						</select>
 						<label class="mdl-selectfield__label" for="collection-select">Collection</label>
 					</div>
-					<a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" href="collections.html">
-						<i class="material-icons">create</i>
-					</a>
+					<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored collection-create-button">
+						<i class="material-icons">add</i>
+					</button>
+					<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored collection-delete-button">
+						<i class="material-icons">delete</i>
+					</button>
 				</div>
 			</div>
 			<div class="mdl-grid">
 				<div class="mdl-cell mdl-cell--12-col mdl-cell--10-col-desktop mdl-cell--1-offset-desktop">
 					<div id="collection-loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
-					<div id="video-list"></div>
+					<div id="collection-list">
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<script type="text/template" id="collection-item-template">
-		<div class="mdl-card card-wide mdl-shadow--2dp">
-			<div class="card-secondary">
-				<div class="card-thumbnail-title">
-					<a href="<%= video.channel.url %>"><span class="media-channel-title"><%= video.channel.name %></span></a>
-				</div>
-				<div class="card-thumbnail">
-					<a href="<%= video.url %>">
-						<img src="<%= video.thumbnail %>"/>
-					</a>
+	<script type="text/template" id="collection-form-item-template">
+		<div class="mdl-grid collection-list-item" data-collection-id="<%= collection.id %>">
+			<div class="mdl-cell mdl-cell--4-col">
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" value="<%= collection.label %>">
+					<label class="mdl-textfield__label" for="collection-form-channels">Label</label>
 				</div>
 			</div>
-			<div class="card-primary">
-				<div class="mdl-card__title">
-					<a href="<%= video.url %>" class="media-video-title"><%= video.title %></a>
-				</div>
-				<div class="mdl-card__supporting-text">
-					<span class="media-description">
-						<% if (video.description.length > 0) { %>
-							<%= video.description.substring(0, 120) %>...
-						<% } %>
-					</span>
-					<span class="media-date" title="<%= video.date.format('YYYY-MM-DD h:mm:ssa') %>">
-						<%= video.date.fromNow() %>
-					</span>
-					<span class="media-views">
-						<% if (video.views > 0) { %>
-							<%= video.views.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> views
-						<% } %>
-					</span>
+			<div class="mdl-cell mdl-cell--4-col">
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<textarea class="mdl-textfield__input collection-ids" data-collection-id="<%= collection.id %>" type="text" rows="3"><%= _.pluck(collection.channels, 'id').join("\n") %></textarea>
+					<label class="mdl-textfield__label" for="collection-form-channels">Channel IDs (1 per line)</label>
 				</div>
 			</div>
 		</div>
